@@ -1,6 +1,6 @@
-Guessing Game Application!
+#Guessing Game Application!
 
-Welcome to the Guessing Game Application! This application allows players to play a number guessing game and compete for the lowest average number of guesses. The game features a user-friendly console interface and maintains a highscore list of players.
+##Welcome to the Guessing Game Application! This application allows players to play a number guessing game and compete for the lowest average number of guesses. The game features a user-friendly console interface and maintains a highscore list of players.
 
 Features
 Modular Design: The application has been refactored to follow a modular design, making it easier to understand, maintain, and extend.
