@@ -13,6 +13,8 @@ namespace Labb.Smells.Classes
         private readonly IUI io;
         private readonly PlayerData playerData;
 
+        IPlayer player;
+
         public GameController()
         {
             this.io = new TextIO();
@@ -39,21 +41,21 @@ namespace Labb.Smells.Classes
         {
             bool playOn = true;
 
-            Player player = new Player(playerName, 0);
+            player = new Player(playerName, 0);
 
             while (playOn)
             {
                 string correctNumbers = CreateTargetNumber();
 
-                player.totalGuess = 0;
+                player.TotalGuess = 0;
 
                 player = Guessing(correctNumbers, player);
 
-                playerData.SavePlayerData(player.Name, player.totalGuess);
+                playerData.SavePlayerData(player.Name, player.TotalGuess);
 
                 ShowTopList();
 
-                PrintFinalResult(player.totalGuess);
+                PrintFinalResult(player.TotalGuess);
 
                 playOn = KeepPlaying();
             }
@@ -120,7 +122,7 @@ namespace Labb.Smells.Classes
             }
         }
 
-        private Player Guessing(string correctNumbers, Player player)
+        private IPlayer Guessing(string correctNumbers, IPlayer player)
         {
             io.Print("New game:\n");
 
@@ -129,11 +131,11 @@ namespace Labb.Smells.Classes
 
             while (true)
             {
-                player.totalGuess++;
-                player.guess = io.GetInput();
-                io.Print(player.guess + "\n");
+                player.TotalGuess++;
+                player.Guess = io.GetInput();
+                io.Print(player.Guess + "\n");
 
-                string guessResult = PrintGuessResult(correctNumbers, player.guess);
+                string guessResult = PrintGuessResult(correctNumbers, player.Guess);
                 io.Print(guessResult + "\n");
 
                 if (guessResult == "BBBB,")
@@ -164,20 +166,22 @@ namespace Labb.Smells.Classes
             return keepPlaying;
         }
 
-        public List<Player> GetSortedTopList()
+        public List<IPlayer> GetSortedTopList()
         {
-            List<Player> players = playerData.GetPlayerData();
+            List<IPlayer> players = playerData.GetPlayerData();
 
-            return playerData.SortHighscoreList(players);
+            players = playerData.SortHighscoreList(players);
+
+            return players;
             
         }
 
-        private void ShowTopList()
+        public void ShowTopList()
         {
-            List<Player> players = GetSortedTopList();
+            List<IPlayer> players = GetSortedTopList();
 
             io.Print("Player   games average");
-            foreach (Player p in players)
+            foreach (IPlayer p in players)
             {
                 io.Print(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NumberOfGames, p.Average()));
             }

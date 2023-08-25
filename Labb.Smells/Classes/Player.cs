@@ -11,31 +11,27 @@ namespace Labb.Smells.Classes
     public class Player : IPlayer
     {
         IUI io;
-
-        public string Name { get; private set; }
-
-        public string guess;
-        public int NumberOfGames { get; private set; }
-
-        public int totalGuess;
-
+        public string Name { get; set; }
+        public string Guess { get; set; }
+        public int NumberOfGames { get; set; }
+        public int TotalGuess { get; set; }
 
         public Player(string name, int guesses)
         {
             this.Name = name;
             NumberOfGames = 1;
-            totalGuess = guesses;
+            this.TotalGuess = guesses;
         }
 
         public void Update(int guesses)
         {
-            totalGuess += guesses;
+            TotalGuess += guesses;
             NumberOfGames++;
         }
 
         public double Average()
         {
-            return (double)totalGuess / NumberOfGames;
+            return (double)TotalGuess / NumberOfGames;
         }
 
 
