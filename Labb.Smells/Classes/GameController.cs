@@ -11,9 +11,9 @@ namespace Labb.Smells.Classes
     public class GameController
     {
         private readonly IUI io;
-        private readonly PlayerData playerData;
+        private readonly IPlayerData playerData;
 
-        IPlayer player;
+        private IPlayer player;
 
         public GameController()
         {

@@ -1,18 +1,10 @@
 ﻿using Labb.Smells.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Labb.Smells.Classes
 {
-    public class PlayerData
+    public class PlayerData : IPlayerData
     {
-
-        IPlayer player;
-
         private static PlayerData? instance;
 
         private PlayerData() { }
@@ -28,8 +20,6 @@ namespace Labb.Smells.Classes
                 return instance;
             }
         }
-
-
 
         public List<IPlayer> GetPlayerData()
         {
@@ -62,7 +52,6 @@ namespace Labb.Smells.Classes
                     results[pos].Update(guesses);
                 }
             }
-
             return results;
         }
 
