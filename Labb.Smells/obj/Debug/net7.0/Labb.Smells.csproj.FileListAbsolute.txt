@@ -1,0 +1,15 @@
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\bin\Debug\net7.0\Labb.Smells.exe
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\bin\Debug\net7.0\Labb.Smells.deps.json
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\bin\Debug\net7.0\Labb.Smells.runtimeconfig.json
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\bin\Debug\net7.0\Labb.Smells.dll
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\bin\Debug\net7.0\Labb.Smells.pdb
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.csproj.AssemblyReference.cache
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.AssemblyInfoInputs.cache
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.AssemblyInfo.cs
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.csproj.CoreCompileInputs.cache
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.dll
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\refint\Labb.Smells.dll
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.pdb
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.genruntimeconfig.cache
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\ref\Labb.Smells.dll
