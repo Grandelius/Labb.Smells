@@ -1,28 +1,37 @@
-#Guessing Game Application!
+# Guessing Game Application!
 
-##Welcome to the Guessing Game Application! This application allows players to play a number guessing game and compete for the lowest average number of guesses. The game features a user-friendly console interface and maintains a highscore list of players.
+## Welcome to the Guessing Game Application! This application allows players to play a number guessing game and compete for the lowest average number of guesses. The game features a user-friendly console interface and maintains a highscore list of players.
 
-Features
-Modular Design: The application has been refactored to follow a modular design, making it easier to understand, maintain, and extend.
-MVC Pattern: The application follows the Model-View-Controller (MVC) architectural pattern, separating concerns and promoting a clear separation between user interface, player data, and game logic.
-Singleton Pattern: The PlayerData class has been implemented as a singleton, ensuring a single instance of the class is used throughout the application.
-Interfaces: Interfaces such as IPlayer and IUI define contracts that provide consistency, flexibility, and promote code reuse.
-Clean Code: The codebase has been improved for readability, maintainability, and adherence to coding standards.
-How to Play
-Clone the repository to your local machine.
-Build and run the application using your preferred development environment.
-Follow the on-screen prompts to create a user name and start playing the game.
-Guess the correct number and try to achieve the lowest average number of guesses.
-The application will display a highscore list of players based on their average number of guesses.
-Structure
-The application is structured into three main components:
+## Features
+### Modular Design:
+The application has been refactored to follow a modular design, making it easier to understand, maintain, and extend.
+### MVC Pattern:
+The application follows the Model-View-Controller (MVC) architectural pattern, separating concerns and promoting a clear separation between user interface, player data, and game logic.
+### Singleton Pattern:
+The PlayerData class has been implemented as a singleton, ensuring a single instance of the class is used throughout the application.
+### Interfaces:
+Interfaces such as IPlayer and IUI define contracts that provide consistency, flexibility, and promote code reuse.
+### Clean Code:
+The codebase has been improved for readability, maintainability, and adherence to coding standards.
+#### How to Play
+1. *Clone the repository to your local machine.*
+2. *Build and run the application using your preferred development environment.*
+3. *Follow the on-screen prompts to create a user name and start playing the game.*
+4. *Guess the correct number and try to achieve the lowest average number of guesses.*
+5. *The application will display a highscore list of players based on their average number of guesses.*
+   
+## **Structure**
+### *The application is structured into three main components:*
 
-TextIO: This class handles user input and output using the console, providing a user-friendly interface for playing the game.
-PlayerData: The PlayerData class manages player information, including loading player data from a file, sorting highscores, and saving player results.
-GameController: The GameController class orchestrates the game flow, player interactions, and displays highscore information.
+### TextIO:
+This class handles user input and output using the console, providing a user-friendly interface for playing the game.
+### PlayerData:
+The PlayerData class manages player information, including loading player data from a file, sorting highscores, and saving player results.
+### GameController:
+The GameController class orchestrates the game flow, player interactions, and displays highscore information.
 
 
-Original Code: 
+**Original Code:**
 
 	class MainClass
 	{
