@@ -8,14 +8,9 @@ namespace Labb.Smells.Interfaces
 {
     public interface IUI
     {
-        public void Print(string v)
-        {
-            Console.WriteLine();
-        }
+        public void Print(string message);
 
-        public string GetInput()
-        {
-           return Console.ReadLine();
-        }
+        public string GetInput();
+
     }
 }

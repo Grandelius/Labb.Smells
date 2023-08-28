@@ -10,9 +10,11 @@ namespace Labb.Smells.Classes
             return Console.ReadLine();
         }
 
-        public void Print(string text)
+        public void Print(string message)
         {
-            Console.WriteLine(text);
+            Console.WriteLine(message + "\n");
         }
+
+   
     }
 }

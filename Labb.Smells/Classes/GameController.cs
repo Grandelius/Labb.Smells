@@ -3,7 +3,9 @@ using Labb.Smells.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Labb.Smells.Classes
@@ -15,29 +17,29 @@ namespace Labb.Smells.Classes
 
         private IPlayer player;
 
-        public GameController()
+        public GameController(IUI io, IPlayerData playerData)
         {
-            this.io = new TextIO();
-            this.playerData = PlayerData.Instance;
+            this.io = io;
+            this.playerData = playerData;
         }
 
         public void Run()
         {
             string playerName = CreateUserName();
 
-            NewGame(playerName);
+            StartGame(playerName);
 
         }
 
         private string CreateUserName()
         {
-            io.Print("Enter your user name:\n");
+            io.Print("Enter your user name:");
             string playerName = io.GetInput();
 
             return playerName;
         }
 
-        private void NewGame(string playerName)
+        private void StartGame(string playerName)
         {
             bool playOn = true;
 
@@ -45,11 +47,10 @@ namespace Labb.Smells.Classes
 
             while (playOn)
             {
-                string correctNumbers = CreateTargetNumber();
+                string targetNumbers = CreateTargetNumber();
 
-                player.TotalGuess = 0;
 
-                player = Guessing(correctNumbers, player);
+                player = NewGuessingGame(targetNumbers, player);
 
                 playerData.SavePlayerData(player.Name, player.TotalGuess);
 
@@ -87,16 +88,19 @@ namespace Labb.Smells.Classes
 
         private string PrintGuessResult(string target, string guess)
         {
-            try
+            if (!ValidGuess(guess))
             {
+                return "Invalid input!\nType 4 digits only:";
+            }
+
             const string correctPlaceSymbol = "B";
-            const string correctNumberSymbol = "C";
+            const string targetNumbersymbol = "C";
 
             int correctPlaceCount = 0;
             int correctNumberCount = 0;
 
-                guess += new string(' ', 4 - guess.Length); 
-  
+            guess += new string(' ', 4 - guess.Length);
+
 
             for (int i = 0; i < 4; i++)
             {
@@ -112,31 +116,30 @@ namespace Labb.Smells.Classes
 
             string result = string.Concat(Enumerable.Repeat(correctPlaceSymbol, correctPlaceCount))
                             + "," +
-                            string.Concat(Enumerable.Repeat(correctNumberSymbol, correctNumberCount));
+                            string.Concat(Enumerable.Repeat(targetNumbersymbol, correctNumberCount));
 
             return result;
-            }
-            catch
-            {
-                return "Incorrect number of digits, try again!";
-            }
+
+
         }
 
-        private IPlayer Guessing(string correctNumbers, IPlayer player)
+        private IPlayer NewGuessingGame(string targetNumbers, IPlayer player)
         {
-            io.Print("New game:\n");
+            player.TotalGuess = 0; // Reset guesses when starting new game
+
+            io.Print("New game:");
 
             //comment out or remove next line to play real games!
-            io.Print("For practice, number is: " + correctNumbers + "\n");
+            io.Print("For practice, number is: " + targetNumbers);
 
             while (true)
             {
                 player.TotalGuess++;
                 player.Guess = io.GetInput();
-                io.Print(player.Guess + "\n");
+                io.Print(player.Guess);
 
-                string guessResult = PrintGuessResult(correctNumbers, player.Guess);
-                io.Print(guessResult + "\n");
+                string guessResult = PrintGuessResult(targetNumbers, player.Guess);
+                io.Print(guessResult);
 
                 if (guessResult == "BBBB,")
                 {
@@ -173,7 +176,7 @@ namespace Labb.Smells.Classes
             players = playerData.SortHighscoreList(players);
 
             return players;
-            
+
         }
 
         public void ShowTopList()
@@ -187,5 +190,13 @@ namespace Labb.Smells.Classes
             }
 
         }
+        private bool ValidGuess(string guess)
+        {
+            var regex = new Regex("^[0-9]{4}$");
+            bool isValid = regex.IsMatch(guess);
+
+            return isValid;
+        }
     }
+
 }

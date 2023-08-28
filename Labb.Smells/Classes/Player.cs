@@ -10,7 +10,6 @@ namespace Labb.Smells.Classes
 {
     public class Player : IPlayer
     {
-        IUI io;
         public string Name { get; set; }
         public string Guess { get; set; }
         public int NumberOfGames { get; set; }
@@ -19,11 +18,11 @@ namespace Labb.Smells.Classes
         public Player(string name, int guesses)
         {
             this.Name = name;
-            NumberOfGames = 1;
             this.TotalGuess = guesses;
+            NumberOfGames = 1;
         }
 
-        public void Update(int guesses)
+        public void AddGuesses(int guesses)
         {
             TotalGuess += guesses;
             NumberOfGames++;
@@ -40,11 +39,9 @@ namespace Labb.Smells.Classes
             return Name.Equals(((Player)player).Name);
         }
 
-
         public override int GetHashCode()
         {
             return Name.GetHashCode();
         }
-
     }
 }
