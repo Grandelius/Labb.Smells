@@ -12,7 +12,7 @@ namespace Labb.Smells.Classes
 {
     public class GameController
     {
-        private readonly IUI io;
+        public IUI io;
         private readonly IPlayerData playerData;
         private readonly IRandomNumberGenerator randomNumberGenerator;
 
@@ -34,7 +34,7 @@ namespace Labb.Smells.Classes
 
         }
 
-        private string CreateUserName()
+        public string CreateUserName()
         {
             io.Print("Enter your user name:");
             string playerName = io.GetInput();
