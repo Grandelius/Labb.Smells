@@ -13,6 +13,6 @@
         double Average();
         bool Equals(object p);
         int GetHashCode();
-        void AddGuesses(int guesses);
+        void AddNewResult(int guesses);
     }
 }

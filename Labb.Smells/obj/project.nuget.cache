@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "gG8ne2LQ2Jnn1NB583oaaF2nMLZf6M7+A5AqYe6TERPe6K+Iph9jsVNERjcP2mo2ofNzS4tsbF8cYIaY7w5PpQ==",
+  "dgSpecHash": "euO8U+BssBY3oRgGfYCo+3jbb7jB2vtbwNF4li+4YpNZmFBnRf3huU22VxwpurIOUUdV/OhQ1XaUSt4xPgZYIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ÄGARE\\source\\repos\\Labb.Smells\\Labb.Smells\\Labb.Smells.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ÄGARE\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\ÄGARE\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Users\\ÄGARE\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512"
+  ],
   "logs": []
 }

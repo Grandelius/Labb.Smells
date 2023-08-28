@@ -13,3 +13,5 @@ C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\refint\Lab
 C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.pdb
 C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.genruntimeconfig.cache
 C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\ref\Labb.Smells.dll
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\bin\Debug\net7.0\nunit.framework.dll
+C:\Users\ÄGARE\source\repos\Labb.Smells\Labb.Smells\obj\Debug\net7.0\Labb.Smells.csproj.CopyComplete

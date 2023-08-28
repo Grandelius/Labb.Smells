@@ -22,7 +22,7 @@ namespace Labb.Smells.Classes
             NumberOfGames = 1;
         }
 
-        public void AddGuesses(int guesses)
+        public void AddNewResult(int guesses)
         {
             TotalGuess += guesses;
             NumberOfGames++;

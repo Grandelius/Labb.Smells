@@ -6,8 +6,9 @@ namespace Labb.Smells.Classes
     public class PlayerData : IPlayerData
     {
         private static PlayerData? instance;
+        private readonly string resultFile = "result.txt";
 
-        private PlayerData() { }
+        private PlayerData() {}
 
         public static PlayerData Instance
         {
@@ -21,24 +22,30 @@ namespace Labb.Smells.Classes
             }
         }
 
+
         public List<IPlayer> GetPlayerData()
         {
-            StreamReader resultLog = new StreamReader("result.txt");
+
+            using StreamReader resultLog = new StreamReader(resultFile);
 
             List<IPlayer> playerList = SortPlayerData(resultLog);
 
-            resultLog.Close();
+            playerList = SortHighscoreList(playerList);
 
             return playerList;
+
+
+
         }
 
         private List<IPlayer> SortPlayerData(StreamReader playerData)
         {
             List<IPlayer> results = new List<IPlayer>();
             string line;
+            string stringSeparator = "#&#";
             while ((line = playerData.ReadLine()) != null)
             {
-                string[] nameAndScore = line.Split(new string[] { "#&#" }, StringSplitOptions.None);
+                string[] nameAndScore = line.Split(new string[] { stringSeparator }, StringSplitOptions.None);
                 string name = nameAndScore[0];
                 int guesses = Convert.ToInt32(nameAndScore[1]);
                 IPlayer player = new Player(name, guesses);
@@ -49,7 +56,7 @@ namespace Labb.Smells.Classes
                 }
                 else
                 {
-                    results[pos].AddGuesses(guesses);
+                    results[pos].AddNewResult(guesses);
                 }
             }
             return results;
@@ -64,7 +71,7 @@ namespace Labb.Smells.Classes
 
         public void SavePlayerData(string name, int guessCount)
         {
-            StreamWriter result = new StreamWriter("result.txt", append: true);
+            StreamWriter result = new StreamWriter(resultFile, append: true);
             result.WriteLine(name + "#&#" + guessCount);
             result.Close();
         }
