@@ -49,7 +49,7 @@ namespace Labb.Smells.Classes
                 }
                 else
                 {
-                    results[pos].Update(guesses);
+                    results[pos].AddGuesses(guesses);
                 }
             }
             return results;

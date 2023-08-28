@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Labb.Smells.Classes;
 using Labb.Smells.Interfaces;
 
-GameController gameController = new GameController();
+IUI io = new TextIO();
+IPlayerData playerData = PlayerData.Instance;
+
+GameController gameController = new GameController(io, playerData);
 
 gameController.Run();
