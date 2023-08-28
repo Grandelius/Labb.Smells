@@ -4,23 +4,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
 namespace Labb.Smells.Classes
 {
     public class GameController
     {
         private readonly IUI io;
         private readonly IPlayerData playerData;
+        private readonly IRandomNumberGenerator randomNumberGenerator;
 
         private IPlayer player;
 
-        public GameController(IUI io, IPlayerData playerData)
+        public GameController(IUI io, IPlayerData playerData, IRandomNumberGenerator randomNumberGenerator)
         {
             this.io = io;
             this.playerData = playerData;
+            this.randomNumberGenerator = randomNumberGenerator;
+
         }
 
         public void Run()
@@ -63,10 +66,9 @@ namespace Labb.Smells.Classes
         }
 
 
-        private string CreateTargetNumber()
+        public string CreateTargetNumber()
         {
 
-            Random randomGenerator = new Random();
             List<int> availableDigits = new List<int>(10); // List to track available digits
             for (int i = 0; i < 10; i++)
             {
@@ -76,7 +78,7 @@ namespace Labb.Smells.Classes
             string target = "";
             for (int i = 0; i < 4; i++)
             {
-                int randomIndex = randomGenerator.Next(availableDigits.Count);
+                int randomIndex = randomNumberGenerator.Next(0,availableDigits.Count);
                 int randomDigit = availableDigits[randomIndex]; // Get a random available digit
                 availableDigits.RemoveAt(randomIndex); // Remove the used digit
 
@@ -171,9 +173,8 @@ namespace Labb.Smells.Classes
 
         public List<IPlayer> GetSortedTopList()
         {
+        
             List<IPlayer> players = playerData.GetPlayerData();
-
-            players = playerData.SortHighscoreList(players);
 
             return players;
 
