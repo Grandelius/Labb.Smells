@@ -14,7 +14,7 @@ namespace Labb.Smells.Classes
     {
         public IUI io;
         private readonly IPlayerData playerData;
-        private readonly IRandomNumberGenerator randomNumberGenerator;
+        public IRandomNumberGenerator randomNumberGenerator;
 
         private IPlayer player;
 
@@ -88,7 +88,7 @@ namespace Labb.Smells.Classes
             return target;
         }
 
-        private string PrintGuessResult(string target, string guess)
+        public string PrintGuessResult(string target, string guess)
         {
             if (!ValidGuess(guess))
             {
@@ -157,7 +157,7 @@ namespace Labb.Smells.Classes
             io.Print("Correct, it took " + guessCount + " guesses\nContinue?");
         }
 
-        private bool KeepPlaying()
+        public bool KeepPlaying()
         {
             bool keepPlaying = true;
 
@@ -191,7 +191,7 @@ namespace Labb.Smells.Classes
             }
 
         }
-        private bool ValidGuess(string guess)
+        public bool ValidGuess(string guess)
         {
             var regex = new Regex("^[0-9]{4}$");
             bool isValid = regex.IsMatch(guess);
