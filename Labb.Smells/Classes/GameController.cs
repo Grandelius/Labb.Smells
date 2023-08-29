@@ -14,7 +14,7 @@ namespace Labb.Smells.Classes
     {
         public IUI io;
         private readonly IPlayerData playerData;
-        private readonly IRandomNumberGenerator randomNumberGenerator;
+        public IRandomNumberGenerator randomNumberGenerator;
 
         private IPlayer player;
 

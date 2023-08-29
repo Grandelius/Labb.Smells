@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Labb.Smells.Interfaces
 {
+    
     public interface IRandomNumberGenerator
     {
-       int Next(int minValue, int maxValue);
+        int Next(int minValue, int maxValue);
     }
 }

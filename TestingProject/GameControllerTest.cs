@@ -19,18 +19,19 @@ namespace Labb.Smells.Classes.Tests
         public void Test_CreateTargetNumbers()
         {
 
+            var randomNumberGeneratorMock = new Mock<IRandomNumberGenerator>();
 
-            // Arrange the mocked RandomNumbers
-            var randomNumberGeneratorMock =  new Mock<IRandomNumberGenerator>();
-            randomNumberGeneratorMock.SetupSequence(x => x.Next(1, It.IsAny<int>()))
-                .Returns(1)
-                .Returns(2)
-                .Returns(3)
-                .Returns(4);
+            randomNumberGeneratorMock.SetupSequence(x => x.Next(0, It.IsAny<int>()))
+              .Returns(1)
+              .Returns(1)
+              .Returns(1)
+              .Returns(1);
+
+            gamecontroller.randomNumberGenerator = randomNumberGeneratorMock.Object;
 
             string target = gamecontroller.CreateTargetNumber();
 
-            Assert.AreEqual("0123", target);
+            Assert.AreEqual("1234", target);
         }
 
         [TestMethod]
