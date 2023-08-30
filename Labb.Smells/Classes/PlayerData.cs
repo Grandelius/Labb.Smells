@@ -5,23 +5,12 @@ namespace Labb.Smells.Classes
 {
     public class PlayerData : IPlayerData
     {
-        private static PlayerData? instance;
         private readonly string resultFile = "result.txt";
 
-        private PlayerData() {}
-
-        public static PlayerData Instance
+        public PlayerData(string resultFile)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new PlayerData();
-                }
-                return instance;
-            }
+            this.resultFile = resultFile;
         }
-
 
         public List<IPlayer> GetPlayerData()
         {

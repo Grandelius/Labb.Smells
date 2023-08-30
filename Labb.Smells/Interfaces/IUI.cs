@@ -12,5 +12,7 @@ namespace Labb.Smells.Interfaces
 
         public string GetInput();
 
+        public void PrintStartMenu();
+
     }
 }

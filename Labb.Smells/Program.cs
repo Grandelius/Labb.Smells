@@ -5,10 +5,31 @@ using Labb.Smells.Classes;
 using Labb.Smells.Interfaces;
 
 IUI io = new TextIO();
-IPlayerData playerData = PlayerData.Instance;
-IRandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-GameController gameController = new GameController(io, playerData, randomNumberGenerator);
+IPlayerData mooGameplayerData = PlayerDataFactory.CreateMooGamePlayerData();
+IRandomNumberGenerator mooGameRandomNumberGenerator = RandomNumberGeneratorFactory.CreateMooGameNumberGenerator();
 
-gameController.Run();
+IPlayerData mastermindPlayerData = PlayerDataFactory.CreateMastermindPlayerData();
+IRandomNumberGenerator mastermindRandomNumberGenerator = RandomNumberGeneratorFactory.CreateMastermindNumberGenerator();
+
+io.PrintStartMenu();
+
+string result = io.GetInput();
+
+if (result == "1")
+{
+    GameController gameController = new GameController(io, mooGameplayerData, mooGameRandomNumberGenerator);
+    gameController.Run();
+}
+
+if (result == "2")
+{
+    GameController gameController = new GameController(io, mastermindPlayerData, mastermindRandomNumberGenerator);
+    gameController.Run();
+}
+
+
+
+
+
 
