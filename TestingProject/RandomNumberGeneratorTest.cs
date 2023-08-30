@@ -1,7 +1,6 @@
 ﻿using Labb.Smells.Classes;
 using Labb.Smells.Interfaces;
 
-
 namespace TestingProject
 {
     [TestClass]

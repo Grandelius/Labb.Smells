@@ -1,6 +1,5 @@
 ﻿using Labb.Smells.Interfaces;
 
-
 namespace Labb.Smells.Classes
 {
     public class TextIO : IUI
