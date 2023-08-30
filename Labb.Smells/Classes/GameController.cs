@@ -1,20 +1,13 @@
-﻿using Labb.Smells.Classes;
-using Labb.Smells.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
-using System.Text;
+﻿using Labb.Smells.Interfaces;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 namespace Labb.Smells.Classes
 {
     public class GameController
     {
         public IUI io;
         private readonly IPlayerData playerData;
-        public IRandomNumberGenerator randomNumberGenerator;
+        private readonly IRandomNumberGenerator randomNumberGenerator;
 
         private IPlayer player;
 
@@ -34,7 +27,7 @@ namespace Labb.Smells.Classes
 
         }
 
-        public string CreateUserName()
+        internal string CreateUserName()
         {
             io.Print("Enter your user name:");
             string playerName = io.GetInput();
@@ -50,10 +43,9 @@ namespace Labb.Smells.Classes
 
             while (playOn)
             {
-                string targetNumbers = CreateTargetNumber();
+                string goal = randomNumberGenerator.CreateTargetNumbers();
 
-
-                player = NewGuessingGame(targetNumbers, player);
+                player = NewGuessingGame(goal, player);
 
                 playerData.SavePlayerData(player.Name, player.TotalGuess);
 
@@ -65,30 +57,7 @@ namespace Labb.Smells.Classes
             }
         }
 
-
-        public string CreateTargetNumber()
-        {
-
-            List<int> availableDigits = new List<int>(10); // List to track available digits
-            for (int i = 0; i < 10; i++)
-            {
-                availableDigits.Add(i); // Initialize the list with all digits
-            }
-
-            string target = "";
-            for (int i = 0; i < 4; i++)
-            {
-                int randomIndex = randomNumberGenerator.Next(0,availableDigits.Count);
-                int randomDigit = availableDigits[randomIndex]; // Get a random available digit
-                availableDigits.RemoveAt(randomIndex); // Remove the used digit
-
-                target += randomDigit.ToString();
-            }
-
-            return target;
-        }
-
-        public string PrintGuessResult(string target, string guess)
+        internal string PrintGuessResult(string target, string guess)
         {
             if (!ValidGuess(guess))
             {
@@ -102,7 +71,6 @@ namespace Labb.Smells.Classes
             int correctNumberCount = 0;
 
             guess += new string(' ', 4 - guess.Length);
-
 
             for (int i = 0; i < 4; i++)
             {
@@ -125,17 +93,18 @@ namespace Labb.Smells.Classes
 
         }
 
-        private IPlayer NewGuessingGame(string targetNumbers, IPlayer player)
+        internal IPlayer NewGuessingGame(string targetNumbers, IPlayer player)
         {
             player.TotalGuess = 0; // Reset guesses when starting new game
 
             io.Print("New game:");
 
-            //comment out or remove next line to play real games!
-            io.Print("For practice, number is: " + targetNumbers);
+            io.Print("For practise, target number is" + targetNumbers);
 
             while (true)
             {
+                string correctResult = "BBBB,";
+
                 player.TotalGuess++;
                 player.Guess = io.GetInput();
                 io.Print(player.Guess);
@@ -143,7 +112,7 @@ namespace Labb.Smells.Classes
                 string guessResult = PrintGuessResult(targetNumbers, player.Guess);
                 io.Print(guessResult);
 
-                if (guessResult == "BBBB,")
+                if (guessResult == correctResult)
                 {
                     break;
                 }
@@ -157,7 +126,7 @@ namespace Labb.Smells.Classes
             io.Print("Correct, it took " + guessCount + " guesses\nContinue?");
         }
 
-        public bool KeepPlaying()
+        internal bool KeepPlaying()
         {
             bool keepPlaying = true;
 
@@ -171,7 +140,7 @@ namespace Labb.Smells.Classes
             return keepPlaying;
         }
 
-        public List<IPlayer> GetSortedTopList()
+        private List<IPlayer> GetSortedTopList()
         {
         
             List<IPlayer> players = playerData.GetPlayerData();
@@ -180,7 +149,7 @@ namespace Labb.Smells.Classes
 
         }
 
-        public void ShowTopList()
+        private void ShowTopList()
         {
             List<IPlayer> players = GetSortedTopList();
 
@@ -191,7 +160,7 @@ namespace Labb.Smells.Classes
             }
 
         }
-        public bool ValidGuess(string guess)
+        internal bool ValidGuess(string guess)
         {
             var regex = new Regex("^[0-9]{4}$");
             bool isValid = regex.IsMatch(guess);

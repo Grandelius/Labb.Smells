@@ -8,31 +8,17 @@ namespace Labb.Smells.Classes.Tests
     {
         public GameController gamecontroller;
 
+        public IPlayer player;
+
+
         public GameControllerTest()
         {
             this.gamecontroller = new GameController(new Mock<IUI>().Object,
                 new Mock<IPlayerData>().Object,
                 new Mock<IRandomNumberGenerator>().Object);
+            
         }
   
-        [TestMethod]
-        public void Test_CreateTargetNumbers()
-        {
-
-            var randomNumberGeneratorMock = new Mock<IRandomNumberGenerator>();
-
-            randomNumberGeneratorMock.SetupSequence(x => x.Next(0, It.IsAny<int>()))
-              .Returns(1)
-              .Returns(1)
-              .Returns(1)
-              .Returns(1);
-
-            gamecontroller.randomNumberGenerator = randomNumberGeneratorMock.Object;
-
-            string target = gamecontroller.CreateTargetNumber();
-
-            Assert.AreEqual("1234", target);
-        }
 
         [TestMethod]
         public void Test_CreateUserName()
@@ -112,6 +98,31 @@ namespace Labb.Smells.Classes.Tests
             Assert.AreEqual(true, result);
 
             ioMock.Verify(io => io.GetInput(), Times.Once);
+        }
+
+        [TestMethod]
+
+        public void Test_NewGuessingGame_ReturnsUpdatedGuess()
+        {
+            int totalGuess = 0; //The Players total guesses when created
+
+            player = new Player("TestUser", totalGuess);
+
+            string target = "1234";
+
+            var ioMock = new Mock<IUI>();
+
+            ioMock.Setup(io => io.GetInput()).Returns("1234");
+
+            gamecontroller.io = ioMock.Object;
+
+           player = gamecontroller.NewGuessingGame(target, player);
+
+            ioMock.Verify(io => io.GetInput(), Times.Once); // Verify that the mocked setup input is read.
+
+            Assert.AreEqual(1, player.TotalGuess); // The players total guesses after method 
+
+
         }
     }
 }

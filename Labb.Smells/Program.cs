@@ -1,14 +1,37 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using Labb.Smells.Classes;
+﻿using Labb.Smells.Classes;
 using Labb.Smells.Interfaces;
 
 IUI io = new TextIO();
-IPlayerData playerData = PlayerData.Instance;
-IRandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-GameController gameController = new GameController(io, playerData, randomNumberGenerator);
+IPlayerData mooGameplayerData = PlayerDataFactory.CreateMooGamePlayerData();
+IRandomNumberGenerator mooGameRandomNumberGenerator = RandomNumberGeneratorFactory.CreateMooGameNumberGenerator();
 
-gameController.Run();
+IPlayerData mastermindPlayerData = PlayerDataFactory.CreateMastermindPlayerData();
+IRandomNumberGenerator mastermindRandomNumberGenerator = RandomNumberGeneratorFactory.CreateMastermindNumberGenerator();
+
+string mooGame = "1";
+string mastermind = "2";
+
+io.PrintStartMenu();
+
+string result = io.GetInput();
+
+if (result == mooGame)
+{
+    io.Print("You choosed MooGame!");
+    GameController gameController = new GameController(io, mooGameplayerData, mooGameRandomNumberGenerator);
+    gameController.Run();
+}
+
+if (result == mastermind)
+{
+    io.Print("You choosed Mastermind");
+    GameController gameController = new GameController(io, mastermindPlayerData, mastermindRandomNumberGenerator);
+    gameController.Run();
+}
+
+
+
+
+
 

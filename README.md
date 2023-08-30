@@ -7,8 +7,8 @@
 The application has been refactored to follow a modular design, making it easier to understand, maintain, and extend.
 ### MVC Pattern:
 The application follows the Model-View-Controller (MVC) architectural pattern, separating concerns and promoting a clear separation between user interface, player data, and game logic.
-### Singleton Pattern:
-The PlayerData class has been implemented as a singleton, ensuring a single instance of the class is used throughout the application.
+### Factory Pattern:
+The Factory Pattern has been integrated to enhance the flexibility and extensibility of the codebase. It allows for easy creation of game-related objects, such as random number generators and player data handlers, while maintaining a consistent interface.
 ### Interfaces:
 Interfaces such as IPlayer and IUI define contracts that provide consistency, flexibility, and promote code reuse.
 ### Clean Code:

@@ -1,6 +1,4 @@
-
 using Labb.Smells.Interfaces;
-
 
 namespace Labb.Smells.Classes.Tests
 {
