@@ -9,26 +9,37 @@ IRandomNumberGenerator mooGameRandomNumberGenerator = RandomNumberGeneratorFacto
 IPlayerData mastermindPlayerData = PlayerDataFactory.CreateMastermindPlayerData();
 IRandomNumberGenerator mastermindRandomNumberGenerator = RandomNumberGeneratorFactory.CreateMastermindNumberGenerator();
 
-string mooGame = "1";
-string mastermind = "2";
+bool runMenu = true;
 
-io.PrintStartMenu();
-
-string result = io.GetInput();
-
-if (result == mooGame)
+while (runMenu)
 {
-    io.Print("You choosed MooGame!");
-    GameController gameController = new GameController(io, mooGameplayerData, mooGameRandomNumberGenerator);
-    gameController.Run();
+    io.PrintStartMenu();
+
+    string result = io.GetInput();
+
+    switch (result)
+    {
+        case "1":
+            io.Print("You chose MooGame!");
+            GameController mooGameController = new GameController(io, mooGameplayerData, mooGameRandomNumberGenerator);
+            runMenu = mooGameController.Run();
+            break;
+
+        case "2":
+            io.Print("You chose Mastermind");
+            GameController mastermindController = new GameController(io, mastermindPlayerData, mastermindRandomNumberGenerator);
+            runMenu = mastermindController.Run();
+            break;
+
+        default:
+            io.Print("Incorrect input, try again!");
+            break;
+    }
 }
 
-if (result == mastermind)
-{
-    io.Print("You choosed Mastermind");
-    GameController gameController = new GameController(io, mastermindPlayerData, mastermindRandomNumberGenerator);
-    gameController.Run();
-}
+
+
+
 
 
 

@@ -19,7 +19,6 @@ namespace Labb.Smells.Classes.Tests
             
         }
   
-
         [TestMethod]
         public void Test_CreateUserName()
         {
@@ -104,7 +103,7 @@ namespace Labb.Smells.Classes.Tests
 
         public void Test_NewGuessingGame_ReturnsUpdatedGuess()
         {
-            int totalGuess = 0; //The Players total guesses when created
+            int totalGuess = 0; 
 
             player = new Player("TestUser", totalGuess);
 
@@ -118,9 +117,9 @@ namespace Labb.Smells.Classes.Tests
 
            player = gamecontroller.NewGuessingGame(target, player);
 
-            ioMock.Verify(io => io.GetInput(), Times.Once); // Verify that the mocked setup input is read.
+            ioMock.Verify(io => io.GetInput(), Times.Once); 
 
-            Assert.AreEqual(1, player.TotalGuess); // The players total guesses after method 
+            Assert.AreEqual(1, player.TotalGuess); 
 
 
         }

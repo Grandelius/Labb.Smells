@@ -8,5 +8,6 @@ namespace Labb.Smells.Interfaces
         string CreateTargetNumbers();
 
         int Next(int minValue, int maxValue);
+
     }
 }

@@ -11,7 +11,7 @@ namespace TestingProject
         public void Test_CreateTargetNumber_CorrectString()
         {
             
-            IRandomNumberGenerator randomNumberGenerator = RandomNumberGeneratorFactory.CreateMooGameNumberGenerator(); // Create an instance of the class containing CreateTargetNumbers method
+            IRandomNumberGenerator randomNumberGenerator = RandomNumberGeneratorFactory.CreateMooGameNumberGenerator();
 
             string target = randomNumberGenerator.CreateTargetNumbers();
             Assert.AreEqual(4, target.Length); // Check if the length of the target string is 4

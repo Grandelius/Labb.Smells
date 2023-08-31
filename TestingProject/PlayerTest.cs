@@ -8,7 +8,7 @@ namespace Labb.Smells.Classes.Tests
         public IPlayer player;
         public PlayerTests ()
         {
-            this.player = new Player("Jonte", 6);
+            this.player = new Player("Jonte", 6); // NumberOfGames is set with 1 when creating the player.
         }
 
         [TestMethod]
@@ -20,7 +20,7 @@ namespace Labb.Smells.Classes.Tests
             player.AddNewResult(guesses);
 
             Assert.AreEqual(7, player.TotalGuess);
-            Assert.AreEqual(2, player.NumberOfGames); // NumberOfGames is set with 1 when creating the player. 
+            Assert.AreEqual(2, player.NumberOfGames);
 
         }
 

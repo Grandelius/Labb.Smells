@@ -7,13 +7,14 @@ namespace Labb.Smells.Classes
         private Random random;
         public int MinValue { get; }
         public int MaxValue { get; }
+        public bool AcceptSameDigits { get; }
 
-        public RandomNumberGenerator(int minValue, int maxValue)
+        public RandomNumberGenerator(int minValue, int maxValue, bool acceptSameDigits)
         {
             random = new Random();
             MinValue = minValue;
             MaxValue = maxValue;
-
+            AcceptSameDigits = acceptSameDigits;
         }
 
         public string CreateTargetNumbers()
@@ -28,9 +29,10 @@ namespace Labb.Smells.Classes
             string target = "";
             for (int i = 0; i < 4; i++)
             {
-                int randomIndex = random.Next(0, availableDigits.Count);
-                int randomDigit = availableDigits[randomIndex]; // Get a random available digit
-                availableDigits.RemoveAt(randomIndex); // Remove the used digit
+                int randomIndex = random.Next(MinValue, availableDigits.Count);
+                int randomDigit = availableDigits[randomIndex];
+
+                if(!AcceptSameDigits) availableDigits.RemoveAt(randomIndex); // Remove the used digit if not allowed in game
 
                 target += randomDigit.ToString();
             }
@@ -42,6 +44,9 @@ namespace Labb.Smells.Classes
         {
             return random.Next(minValue, maxValue);
         }
+
+
+
     }
 }
 

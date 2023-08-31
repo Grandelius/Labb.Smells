@@ -19,12 +19,13 @@ namespace Labb.Smells.Classes
 
         }
 
-        public void Run()
+        public bool Run()
         {
             string playerName = CreateUserName();
 
             StartGame(playerName);
 
+            return false;
         }
 
         internal string CreateUserName()
@@ -35,17 +36,17 @@ namespace Labb.Smells.Classes
             return playerName;
         }
 
-        private void StartGame(string playerName)
+        private void StartGame(string playerName) 
         {
-            bool playOn = true;
+            bool play = true;
 
             player = new Player(playerName, 0);
 
-            while (playOn)
+            while (play)
             {
-                string goal = randomNumberGenerator.CreateTargetNumbers();
+                string target = randomNumberGenerator.CreateTargetNumbers();
 
-                player = NewGuessingGame(goal, player);
+                player = NewGuessingGame(target, player);
 
                 playerData.SavePlayerData(player.Name, player.TotalGuess);
 
@@ -53,7 +54,7 @@ namespace Labb.Smells.Classes
 
                 PrintFinalResult(player.TotalGuess);
 
-                playOn = KeepPlaying();
+                play = KeepPlaying();
             }
         }
 
@@ -61,7 +62,7 @@ namespace Labb.Smells.Classes
         {
             if (!ValidGuess(guess))
             {
-                return "Invalid input!\nType 4 digits only:";
+                return "Invalid input!\nType 4 digits only: ";
             }
 
             const string correctPlaceSymbol = "B";
@@ -95,11 +96,9 @@ namespace Labb.Smells.Classes
 
         internal IPlayer NewGuessingGame(string targetNumbers, IPlayer player)
         {
-            player.TotalGuess = 0; // Reset guesses when starting new game
+            player.TotalGuess = 0; // Resets guesses when starting new game
 
-            io.Print("New game:");
-
-            io.Print("For practise, target number is" + targetNumbers);
+            io.Print("New game, enter 4 digits: " + targetNumbers);
 
             while (true)
             {
@@ -130,9 +129,11 @@ namespace Labb.Smells.Classes
         {
             bool keepPlaying = true;
 
-            io.Print("Do you want to keep playing?");
+            string stopPlaying = "n";
+
+            io.Print("Do you want to keep playing? (y/n)");
             string answer = io.GetInput();
-            if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
+            if (answer != null && answer != "" && answer.Substring(0, 1) == stopPlaying)
             {
                 keepPlaying = false;
             }
@@ -142,7 +143,7 @@ namespace Labb.Smells.Classes
 
         private List<IPlayer> GetSortedTopList()
         {
-        
+
             List<IPlayer> players = playerData.GetPlayerData();
 
             return players;
@@ -153,13 +154,20 @@ namespace Labb.Smells.Classes
         {
             List<IPlayer> players = GetSortedTopList();
 
-            io.Print("Player   games average");
-            foreach (IPlayer p in players)
+            if (players.Count != 0)
             {
-                io.Print(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NumberOfGames, p.Average()));
+                io.Print("Player   games average");
+                foreach (IPlayer p in players)
+                {
+                    io.Print(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NumberOfGames, p.Average()));
+                }
             }
-
+            else
+            {
+                io.Print("Erroo loading highscoredata");
+            }
         }
+
         internal bool ValidGuess(string guess)
         {
             var regex = new Regex("^[0-9]{4}$");
