@@ -30,10 +30,22 @@ namespace Labb.Smells.Classes
 
         internal string CreateUserName()
         {
+            string playerName = "";
+
             io.Print("Enter your user name:");
-            string playerName = io.GetInput();
+            
+            while(true)
+            {
+            playerName = io.GetInput();
+
+                if (playerName != "") break;
+
+                io.Print("playername is empty, try again:");
+
+            }
 
             return playerName;
+
         }
 
         private void StartGame(string playerName) 
@@ -98,7 +110,7 @@ namespace Labb.Smells.Classes
         {
             player.TotalGuess = 0; // Resets guesses when starting new game
 
-            io.Print("New game, enter 4 digits: " + targetNumbers);
+            io.Print("New game, enter 4 digits: ");
 
             while (true)
             {
