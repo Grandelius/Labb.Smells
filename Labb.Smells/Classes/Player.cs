@@ -26,16 +26,5 @@ namespace Labb.Smells.Classes
         {
             return (double)TotalGuess / NumberOfGames;
         }
-
-
-        public override bool Equals(Object player)
-        {
-            return Name.Equals(((Player)player).Name);
-        }
-
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
     }
 }

@@ -20,13 +20,13 @@ while (runMenu)
     switch (result)
     {
         case "1":
-            io.Print("You chose MooGame!");
+            io.Print("You have chosen MooGame!");
             GameController mooGameController = new GameController(io, mooGameplayerData, mooGameRandomNumberGenerator);
             runMenu = mooGameController.Run();
             break;
 
         case "2":
-            io.Print("You chose Mastermind");
+            io.Print("You have chosen Mastermind");
             GameController mastermindController = new GameController(io, mastermindPlayerData, mastermindRandomNumberGenerator);
             runMenu = mastermindController.Run();
             break;
